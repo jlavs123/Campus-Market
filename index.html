@@ -1,168 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusMarket</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f7f6f0;
-            color: #173e32;
-        }
-        header {
-            background: #173e32;
-            color: white;
-            padding: 20px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        header h2 {
-            margin: 0;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-        .hero {
-            padding: 70px 20px;
-            text-align: center;
-            background: #e3ebe1;
-        }
-        .hero h1 {
-            font-size: clamp(32px, 6vw, 52px);
-            margin-bottom: 15px;
-        }
-        .hero p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .button {
-            display: inline-block;
-            background: #173e32;
-            color: white;
-            padding: 14px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin: 8px;
-        }
-        section {
-            padding: 35px 6%;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px #0000000d;
-        }
-        .emoji {
-            font-size: 48px;
-            background: #e3ebe1;
-            padding: 25px;
-            text-align: center;
-            border-radius: 8px;
-        }
-        .price {
-            font-size: 22px;
-            font-weight: bold;
-        }
-        footer {
-            background: #173e32;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusMarket</title>
+<style>
+* {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f6f0;
+  color:#173e32;
+}
+header {
+  background:#173e32;
+  color:white;
+  padding:20px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+header h2 {margin:0}
+nav {display:flex;flex-wrap:wrap;gap:16px}
+nav a {color:white;text-decoration:none}
+.hero {
+  background:#e3ebe1;
+  padding:65px 20px;
+  text-align:center;
+}
+h1 {font-size:clamp(32px,6vw,52px)}
+section {padding:35px 6%}
+p {line-height:1.6}
+button,.button {
+  background:#173e32;
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:13px 20px;
+  cursor:pointer;
+  font-size:15px;
+  display:inline-block;
+  text-decoration:none;
+}
+button:hover,.button:hover {background:#32634e}
+button:disabled {background:#777;cursor:default}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));
+  gap:20px;
+}
+.card {
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 3px 12px #0000000d;
+}
+.emoji {
+  background:#e3ebe1;
+  font-size:50px;
+  text-align:center;
+  padding:30px;
+  border-radius:10px;
+}
+.price {font-size:24px;font-weight:bold}
+.filters {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:20px 0;
+}
+input,select {
+  padding:12px;
+  border:1px solid #b9c6bc;
+  border-radius:8px;
+  font-size:16px;
+  width:100%;
+  background:white;
+}
+.filters > * {flex:1;min-width:150px}
+form {max-width:600px}
+label {display:block;margin:15px 0 6px}
+form button {margin-top:18px}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+  text-align:center;
+}
+.number {font-size:34px;font-weight:bold}
+.simulator {background:#e3ebe1}
+input[type=range] {accent-color:#173e32}
+.track {
+  background:#dce5dc;
+  height:18px;
+  border-radius:10px;
+  overflow:hidden;
+}
+.bar {
+  background:#32634e;
+  height:100%;
+  transition:width .2s;
+}
+.notice {
+  background:#edf3eb;
+  padding:12px;
+  border-radius:8px;
+}
+footer {
+  background:#173e32;
+  color:white;
+  text-align:center;
+  padding:25px;
+}
+</style>
 </head>
 <body>
 
 <header>
-    <h2>CampusMarket</h2>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#marketplace">Marketplace</a>
-        <a href="#about">About</a>
-    </nav>
+<h2>CampusMarket</h2>
+<nav>
+<a href="#home">Home</a>
+<a href="#marketplace">Marketplace</a>
+<a href="#sell">Sell an Item</a>
+<a href="#network">Community</a>
+</nav>
 </header>
 
 <div class="hero" id="home">
-    <h1>Student living, made affordable.</h1>
-    <p>Buy and sell second-hand textbooks, furniture,
-    clothing and everyday essentials within your
-    campus community.</p>
-    <a class="button" href="#marketplace">Explore Marketplace</a>
+<p>THE STUDENT MARKETPLACE</p>
+<h1>Student living, made affordable.</h1>
+<p>Buy and sell affordable second-hand campus
+and living essentials within your student community.</p>
+<a class="button" href="#marketplace">Shop Now</a>
+<a class="button" href="#sell">Start Selling</a>
 </div>
 
 <section id="marketplace">
-    <h2>Featured Listings</h2>
-    <p>Explore affordable student essentials.</p>
+<h2>Explore the Marketplace</h2>
+<p>Find everything you need for student life.</p>
 
-    <div class="grid">
-        <div class="card">
-            <div class="emoji">📚</div>
-            <h3>Introduction to Psychology Textbook</h3>
-            <p>Good condition</p>
-            <p class="price">$35</p>
-        </div>
+<div class="filters">
+<input id="search" aria-label="Search products"
+placeholder="Search for an item...">
+<select id="category" aria-label="Filter category">
+<option>All Categories</option>
+<option>Textbooks</option>
+<option>Furniture</option>
+<option>Clothing</option>
+<option>Electronics</option>
+<option>Living Essentials</option>
+</select>
+<select id="sort" aria-label="Sort products">
+<option value="default">Sort by price</option>
+<option value="low">Lowest price first</option>
+<option value="high">Highest price first</option>
+</select>
+</div>
 
-        <div class="card">
-            <div class="emoji">🪑</div>
-            <h3>Study Desk Chair</h3>
-            <p>Like new</p>
-            <p class="price">$45</p>
-        </div>
+<p id="resultCount" aria-live="polite"></p>
+<div id="listings" class="grid"></div>
+<p id="reservation" role="status"></p>
+</section>
 
-        <div class="card">
-            <div class="emoji">👕</div>
-            <h3>University Hoodie</h3>
-            <p>Size medium</p>
-            <p class="price">$20</p>
-        </div>
+<section id="sell">
+<h2>Sell an Item</h2>
+<p>Give your unused items a second life and
+earn some extra money.</p>
 
-        <div class="card">
-            <div class="emoji">🧮</div>
-            <h3>Scientific Calculator</h3>
-            <p>Excellent condition</p>
-            <p class="price">$25</p>
-        </div>
-    </div>
+<form id="sellForm" class="card">
+<p class="notice">Demo only. Use fictional item
+information. Do not enter personal details.</p>
+
+<label for="itemName">Item name</label>
+<input id="itemName" required maxlength="70"
+placeholder="Example: Desk lamp">
+
+<label for="itemCategory">Category</label>
+<select id="itemCategory">
+<option>Textbooks</option>
+<option>Furniture</option>
+<option>Clothing</option>
+<option>Electronics</option>
+<option>Living Essentials</option>
+</select>
+
+<label for="itemPrice">Price ($ CAD)</label>
+<input id="itemPrice" type="number"
+min="1" max="5000" step="0.01" required>
+
+<label for="condition">Condition</label>
+<select id="condition">
+<option>Like new</option>
+<option>Good condition</option>
+<option>Fair condition</option>
+</select>
+
+<button type="submit">Publish Demo Listing</button>
+<p id="confirmation" role="status"></p>
+</form>
+</section>
+
+<section class="simulator" id="network">
+<h2>A Marketplace That Grows With You</h2>
+<p>Explore how two-sided network effects
+make CampusMarket more valuable as its
+community grows.</p>
+
+<div class="card">
+<label for="sellerSlider">
+Simulated number of active sellers:
+<strong id="sellerLabel">50</strong>
+</label>
+<input id="sellerSlider" type="range"
+min="10" max="500" step="10" value="50">
+
+<div class="stats">
+<div>
+<p>Active Sellers</p>
+<div class="number" id="sellers">50</div>
+</div>
+<div>
+<p>Available Listings</p>
+<div class="number" id="products">150</div>
+</div>
+<div>
+<p>Potential Buyers</p>
+<div class="number" id="buyers">200</div>
+</div>
+</div>
+
+<p>Product selection</p>
+<div class="track">
+<div class="bar" id="growthBar"></div>
+</div>
+
+<p id="networkMessage"></p>
+
+<p class="notice">Illustrative simulation only.
+Assumes three listings and four potential
+buyers per seller. These are hypothetical
+figures, not actual market data or forecasts.</p>
+</div>
 </section>
 
 <section id="about">
-    <h2>Why CampusMarket?</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Save Money</h3>
-            <p>Find affordable alternatives to buying new.</p>
-        </div>
-        <div class="card">
-            <h3>Shop Locally</h3>
-            <p>Connect with students within your campus community.</p>
-        </div>
-        <div class="card">
-            <h3>Reduce Waste</h3>
-            <p>Give used items a second life.</p>
-        </div>
-    </div>
+<h2>Why CampusMarket?</h2>
+<div class="grid">
+<div class="card">
+<h3>Save Money</h3>
+<p>Find affordable alternatives to buying new.</p>
+</div>
+<div class="card">
+<h3>Shop Locally</h3>
+<p>Discover items within your campus community.</p>
+</div>
+<div class="card">
+<h3>Reduce Waste</h3>
+<p>Keep usable items out of landfills.</p>
+</div>
+</div>
 </section>
 
 <footer>
-    <p>CampusMarket | Buy local. Sell smart. Save more.</p>
-    <p>Student prototype — fictional listings for educational purposes only.</p>
+<h3>CampusMarket</h3>
+<p>Buy local. Sell smart. Save more.</p>
+<p>Student prototype — fictional listings and
+simulated transactions for educational purposes only.</p>
 </footer>
+
+<script>
+const icons = {
+  Textbooks:"📚",
+  Furniture:"🪑",
+  Clothing:"👕",
+  Electronics:"🧮",
+  "Living Essentials":"💡"
+};
+
+let items = [
+  {name:"Introduction to Psychology Textbook",
+   category:"Textbooks",price:35,condition:"Good condition"},
+  {name:"Study Desk Chair",
+   category:"Furniture",price:45,condition:"Like new"},
+  {name:"University Hoodie",
+   category:"Clothing",price:20,condition:"Good condition"},
+  {name:"Scientific Calculator",
+   category:"Electronics",price:25,condition:"Like new"},
+  {name:"Desk Lamp",
+   category:"Living Essentials",price:15,condition:"Good condition"},
+  {name:"Introduction to Business Textbook",
+   category:"Textbooks",price:40,condition:"Like new"},
+  {name:"Small Bookshelf",
+   category:"Furniture",price:30,condition:"Good condition"},
+  {name:"Winter Jacket",
+   category:"Clothing",price:55,condition:"Like new"}
+];
+
+function renderItems() {
+  const search = document.getElementById("search").value.toLowerCase();
+  const category = document.getElementById("category").value;
+  const sort = document.getElementById("sort").value;
+
+  let filtered = items.filter(item =>
+    item.name.toLowerCase().includes(search) &&
+    (category === "All Categories" || item.category === category)
+  );
+
+  if(sort === "low") filtered.sort((a,b)=>a.price-b.price);
+  if(sort === "high") filtered.sort((a,b)=>b.price-a.price);
+
+  const container = document.getElementById("listings");
+  container.replaceChildren();
+
+  document.getElementById("resultCount").textContent =
+    filtered.length + " listings found";
+
+  if(!filtered.length) {
+    container.textContent = "No matching items. Try another search.";
+  }
+
+  filtered.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.textContent = icons[item.category];
+
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+
+    const details = document.createElement("p");
+    details.textContent = item.category + " · " + item.condition;
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = "$" + item.price.toFixed(2);
+
+    const button = document.createElement("button");
+    button.textContent = item.reserved ? "Reserved" : "Reserve Item";
+    button.disabled = !!item.reserved;
+
+    button.addEventListener("click",()=>{
+      item.reserved = true;
+      document.getElementById("reservation").textContent =
+        "Demo reservation confirmed for " + item.name +
+        ". No payment was collected.";
+      renderItems();
+    });
+
+    card.append(emoji,title,details,price,button);
+    container.appendChild(card);
+  });
+}
+
+document.getElementById("search").addEventListener("input",renderItems);
+document.getElementById("category").addEventListener("change",renderItems);
+document.getElementById("sort").addEventListener("change",renderItems);
+
+document.getElementById("sellForm").addEventListener("submit",event=>{
+  event.preventDefault();
+
+  const name = document.getElementById("itemName").value.trim();
+  if(!name) return;
+
+  items.unshift({
+    name:name,
+    category:document.getElementById("itemCategory").value,
+    price:Number(document.getElementById("itemPrice").value),
+    condition:document.getElementById("condition").value
+  });
+
+  document.getElementById("search").value = "";
+  document.getElementById("category").value = "All Categories";
+  document.getElementById("sort").value = "default";
+
+  document.getElementById("confirmation").textContent =
+    "Your demo listing has been published! View it in the marketplace.";
+
+  event.target.reset();
+  renderItems();
+});
+
+function updateNetwork() {
+  const sellers = Number(document.getElementById("sellerSlider").value);
+
+  document.getElementById("sellerLabel").textContent = sellers;
+  document.getElementById("sellers").textContent = sellers;
+  document.getElementById("products").textContent = sellers*3;
+  document.getElementById("buyers").textContent = sellers*4;
+  document.getElementById("growthBar").style.width =
+    (sellers/500*100) + "%";
+
+  document.getElementById("networkMessage").textContent =
+    "With " + sellers + " sellers, buyers have more products to choose from. " +
+    "A larger buyer community can also attract more sellers, " +
+    "creating a two-sided network effect.";
+}
+
+document.getElementById("sellerSlider").addEventListener("input",updateNetwork);
+
+renderItems();
+updateNetwork();
+</script>
 
 </body>
 </html>
+           
+           
+
+
+      
