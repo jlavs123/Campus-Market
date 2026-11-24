@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusMarket</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f6f0;
+            color: #173e32;
+        }
+        header {
+            background: #173e32;
+            color: white;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        header h2 {
+            margin: 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .hero {
+            padding: 70px 20px;
+            text-align: center;
+            background: #e3ebe1;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 52px);
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .button {
+            display: inline-block;
+            background: #173e32;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 8px;
+        }
+        section {
+            padding: 35px 6%;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #0000000d;
+        }
+        .emoji {
+            font-size: 48px;
+            background: #e3ebe1;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        footer {
+            background: #173e32;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>CampusMarket</h2>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#marketplace">Marketplace</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <h1>Student living, made affordable.</h1>
+    <p>Buy and sell second-hand textbooks, furniture,
+    clothing and everyday essentials within your
+    campus community.</p>
+    <a class="button" href="#marketplace">Explore Marketplace</a>
+</div>
+
+<section id="marketplace">
+    <h2>Featured Listings</h2>
+    <p>Explore affordable student essentials.</p>
+
+    <div class="grid">
+        <div class="card">
+            <div class="emoji">📚</div>
+            <h3>Introduction to Psychology Textbook</h3>
+            <p>Good condition</p>
+            <p class="price">$35</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🪑</div>
+            <h3>Study Desk Chair</h3>
+            <p>Like new</p>
+            <p class="price">$45</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">👕</div>
+            <h3>University Hoodie</h3>
+            <p>Size medium</p>
+            <p class="price">$20</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🧮</div>
+            <h3>Scientific Calculator</h3>
+            <p>Excellent condition</p>
+            <p class="price">$25</p>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <h2>Why CampusMarket?</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Save Money</h3>
+            <p>Find affordable alternatives to buying new.</p>
+        </div>
+        <div class="card">
+            <h3>Shop Locally</h3>
+            <p>Connect with students within your campus community.</p>
+        </div>
+        <div class="card">
+            <h3>Reduce Waste</h3>
+            <p>Give used items a second life.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>CampusMarket | Buy local. Sell smart. Save more.</p>
+    <p>Student prototype — fictional listings for educational purposes only.</p>
+</footer>
+
+</body>
+</html>
